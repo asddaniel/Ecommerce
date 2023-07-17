@@ -16,6 +16,8 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/cart', [MainController::class, 'cart'])->name('cart');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

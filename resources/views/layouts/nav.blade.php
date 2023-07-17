@@ -51,7 +51,7 @@
                     <a href="#" class="header-item">
                         <i class="fas fa-heart mr-2"></i><span id="header-favorite">0</span>
                     </a>
-                    <a href="cart.html" class="header-item">
+                    <a href="{{ route('cart') }}" class="header-item">
                         <i class="fas fa-shopping-bag mr-2"></i><span id="header-qty" class="mr-3">2</span>
                         <i class="fas fa-money-bill-wave mr-2"></i><span id="header-price">$4,000</span>
                     </a>

@@ -10,4 +10,7 @@ class MainController extends Controller
     public function index(){
         return view('index');
     }
+    public function cart(){
+        return view('cart');
+    }
 }
