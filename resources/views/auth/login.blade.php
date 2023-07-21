@@ -34,6 +34,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <form method="POST" action="{{ route('login') }}">
+                                    @csrf
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" id="email" name="email" class="form-control" required>
