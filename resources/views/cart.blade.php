@@ -29,7 +29,7 @@
                                         <tbody>
                                         <tr>
                                             <td>
-                                                <img src="images/image-2.jpg" class="img-fluid" >
+                                                <img src="images/image-2.jpg" class="img-fluid max-w-20" >
                                                 Optoma 4K HDR Projector
                                             </td>
                                             <td>
@@ -47,7 +47,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <img src="images/image-3.jpg" class="img-fluid" >
+                                                <img src="images/image-3.jpg" class="img-fluid max-w-20" >
                                                 HP Envy Specter 360
                                             </td>
                                             <td>

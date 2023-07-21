@@ -5,6 +5,9 @@
     box-sizing: border-box;
     color: inherit;
 }
+.max-w-20{
+    max-width: 20vw!important;
+}
 .border-none{
     border: none!important;
 }
@@ -14,4 +17,12 @@ a:hover{
 }
 a{
     color: inherit;
+}
+@media (max-width: 767.98px) {
+
+   
+    .max-w-20{
+        max-width: 100%;
+    }
+
 }

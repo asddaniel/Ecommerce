@@ -16,10 +16,10 @@
                 <div class="col-auto">
                     <ul class="top-nav d-flex align-items-center">
                         <li class="px-2">
-                            <a href="register.html" class="nav-link text-white"><i class="fas fa-user-edit mr-2"></i>Register</a>
+                            <a href="{{ route('register') }}" class="nav-link text-white"><i class="fas fa-user-edit mr-2"></i>Register</a>
                         </li>
                         <li>
-                            <a href="login.html" class="nav-link text-white"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
+                            <a href=" {{ route('login') }}" class="nav-link text-white"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>
                         </li>
                     </ul>
                 </div>

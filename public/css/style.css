@@ -2,6 +2,9 @@ body {
     background-color: #eaeaea;
     font-family: 'Open Sans Condensed', sans-serif;
 }
+.max-w-20{
+    max-width: 20vw!important;
+}
 
 a {
     transition: color .2s linear 0s;
@@ -369,6 +372,9 @@ table td img {
     .sidebar {
         border-left-width: 0 !important;
         border-top-width: 1px !important;
+    }
+    .max-w-20{
+        max-width: 100%;
     }
 
 }
