@@ -29,7 +29,7 @@ class LigneVenteController extends Controller
      */
     public function store(StoreLigne_venteRequest $request)
     {
-        //
+        Ligne_vente::create($request->validated());
     }
 
     /**

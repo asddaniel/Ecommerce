@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use App\Http\Requests\StoreProduitRequest;
 use App\Http\Requests\UpdateProduitRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ProduitController extends Controller
 {
@@ -29,7 +30,17 @@ class ProduitController extends Controller
      */
     public function store(StoreProduitRequest $request)
     {
-        //
+
+        $data = $request->validated();
+        if($request->hasFile('image')){
+
+            $data['image'] = str_replace('images', '', $request->image->store('images'));
+
+
+        }
+        $data['user_id'] = Auth::user()->id;
+        Produit::create($data);
+        return redirect()->back();
     }
 
     /**
@@ -53,7 +64,13 @@ class ProduitController extends Controller
      */
     public function update(UpdateProduitRequest $request, Produit $produit)
     {
-        //
+        $data = $request->validated();
+        if($request->hasFile('image')){
+            $data['image'] = str_replace('images', '', $request->image->store('images'));
+
+        }
+        $produit->update($data);
+        return redirect()->back();
     }
 
     /**
@@ -61,6 +78,7 @@ class ProduitController extends Controller
      */
     public function destroy(Produit $produit)
     {
-        //
+        $produit->delete();
+        return redirect()->back();
     }
 }

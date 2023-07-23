@@ -14,7 +14,7 @@
                         <div class="col-12 py-3">
                             <div class="row">
                                 <div class="col-12 text-center text-uppercase">
-                                    <h2>Featured Products</h2>
+                                    <h2>Derniers produits</h2>
                                 </div>
                             </div>
                             <div class="row">
@@ -63,7 +63,7 @@
                         <div class="col-12 py-3">
                             <div class="row">
                                 <div class="col-12 text-center text-uppercase">
-                                    <h2>Latest Products</h2>
+                                    <h2>Les plus vendus</h2>
                                 </div>
                             </div>
                             <div class="row">
@@ -110,50 +110,7 @@
                     <hr>
                 </div>
 
-                <!-- Top Selling Products -->
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-12 py-3">
-                            <div class="row">
-                                <div class="col-12 text-center text-uppercase">
-                                    <h2>Top Selling Products</h2>
-                                </div>
-                            </div>
-                            <div class="row">
 
-                                <!-- Product -->
-                                <div class="col-lg-3 col-sm-6 my-3">
-                                    <div class="col-12 bg-white text-center h-100 product-item">
-                                        <div class="row h-100">
-                                            <div class="col-12 p-0 mb-3">
-                                                <a href="product.html">
-                                                    <img src="images/image-1.jpg" class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <a href="product.html" class="product-name">Sony Alpha DSLR Camera</a>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <span class="product-price-old">
-                                                    $500
-                                                </span>
-                                                <br>
-                                                <span class="product-price">
-                                                    $500
-                                                </span>
-                                            </div>
-                                            <div class="col-12 mb-3 align-self-end">
-                                                <button class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus mr-2"></i>Add to cart</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Product -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Top Selling Products -->
 
                 <div class="col-12 py-3 bg-light d-sm-block d-none">
                     <div class="row">
@@ -163,7 +120,7 @@
                                     <i class="fas fa-money-bill"></i>
                                 </div>
                                 <div class="col-auto mr-auto large-text">
-                                    Best Price
+                                    Meilleur prix
                                 </div>
                             </div>
                         </div>
@@ -194,5 +151,5 @@
         </div>
 
 
-   
+
 @endsection

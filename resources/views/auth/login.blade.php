@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -16,23 +16,20 @@
     <link rel="stylesheet" href="{{ asset('css/all.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/index.css')}}">
 </head>
-<body>
+<body class="bg-light">
     <div class="container-fluid">
-        <div class="row min-vh-100">
+        <div class="row min-vh-100 ">
 
 
-            <div class="col-12">
+            <div class="col-12 pt-3">
                 <!-- Main Content -->
-                <div class="row">
-                    <div class="col-12 mt-3 text-center text-uppercase">
-                        <h2>Se Connecter</h2>
-                    </div>
-                </div>
 
-                <main class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-3 mb-4">
+
+                <main class="row  pt-5">
+                    <div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-3 mb-4    shadow rounded">
                         <div class="row">
                             <div class="col-12">
+                                <h2 class="text-center">Se Connecter</h2>
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group">
@@ -61,12 +58,12 @@
                 <!-- Main Content -->
             </div>
 
-            @include('layouts.footer')
+
 
     </div>
 
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

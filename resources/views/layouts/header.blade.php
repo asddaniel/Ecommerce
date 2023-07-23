@@ -16,16 +16,21 @@
     <link rel="stylesheet" href="{{ asset('css/all.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/index.css')}}">
 </head>
-<body>
+<body class="bg-light">
 
 <div class="container-fluid">
 
     <div class="row min-vh-100">
     @include("layouts.nav")
     @yield("content")
+    @include('layouts.footer')
 
 </div>
 
 </div>
+
+<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

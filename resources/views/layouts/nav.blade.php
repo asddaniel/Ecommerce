@@ -67,20 +67,22 @@
                     <div class="collapse navbar-collapse" id="mainNav">
                         <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{ route('home') }}">Accueil<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="iphone">Iphone</a>
+                                <a class="nav-link" href="#" id="iphone">Produit</a>
                             </li>
+                            @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="samsung">Samsung</a>
+                                <a class="nav-link" href="#" id="samsung">Mes Produits</a>
                             </li>
+
+                            @endauth
+
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="oppo">Oppo</a>
+                                <a class="nav-link" href="#" id="oppo">Categories</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" id="nokia">Nokia</a>
-                            </li>
+                           
                         </ul>
                     </div>
                 </nav>
