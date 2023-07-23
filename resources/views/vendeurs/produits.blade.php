@@ -53,7 +53,7 @@
       <tr >
         <td>{{ $product->name??"" }}</td>
         <td>{{ $product->price??"" }}</td>
-        <td><img src="{{ $product->image??'' }}" alt="{{ $product->name??'' }}" class="img-fluid"></td>
+        <td><img src="{{asset('storage/images/'.$product->image??'') }}" alt="{{ $product->name??'' }}" class="img-fluid max-w-min"></td>
         <td>
           <a href="g" class="btn btn-primary btn-sm">Voir</a>
           <a href="" class="btn btn-warning btn-sm">Modifier</a>

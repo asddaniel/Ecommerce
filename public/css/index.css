@@ -15,12 +15,16 @@ a:hover{
     text-decoration: none!important;
     color: inherit;
 }
+.max-w-min{
+    max-width: 100%!important;
+    max-height: 8em;
+}
 a{
     color: inherit;
 }
 @media (max-width: 767.98px) {
 
-   
+
     .max-w-20{
         max-width: 100%;
     }
