@@ -48,7 +48,9 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
+        return view('produits.show', [
+            'produit' => $produit
+        ]);
     }
 
     /**
@@ -56,7 +58,9 @@ class ProduitController extends Controller
      */
     public function edit(Produit $produit)
     {
-        //
+        return view('produits.edit', [
+            'produit' => $produit
+        ]);
     }
 
     /**
@@ -78,7 +82,18 @@ class ProduitController extends Controller
      */
     public function destroy(Produit $produit)
     {
+        if(Auth::user()->id == $produit->user_id){
+        $filePath = storage_path('app/images/' . $produit->image);
+
+  // Vérifier que le fichier existe
+            if(file_exists($filePath)) {
+
+                // Supprimer le fichier
+                unlink($filePath);
+
+            }
         $produit->delete();
+        }
         return redirect()->back();
     }
 }

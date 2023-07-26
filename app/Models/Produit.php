@@ -14,6 +14,7 @@ class Produit extends Model
         "price",
         "image",
         "description",
+        "categorie_id",
         "user_id",
     ];
 
@@ -24,6 +25,16 @@ class Produit extends Model
      */
     public function ligne_ventes(): HasMany
     {
-        return $this->hasMany(Ligne_vente::class, 'foreign_key', 'local_key');
+        return $this->hasMany(Ligne_vente::class);
+    }
+
+    /**
+     * Get the categorie associated with the Produit
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function categorie(): HasOne
+    {
+        return $this->hasOne(Categorie::class);
     }
 }

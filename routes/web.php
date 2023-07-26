@@ -20,6 +20,7 @@ use App\Http\Controllers\ProduitController;
 
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/cart', [MainController::class, 'cart'])->name('cart');
+Route::get("/produits/{Produit}", [ProduitController::class, 'show'])->name('produits.show');
 
 
 Route::get('/dashboard', function () {
@@ -34,7 +35,14 @@ Route::middleware('auth')->group(function () {
           Route::get('', [VendeurController::class, 'dashboard'])->name('vendeurs');
           Route::get('/produits', [VendeurController::class, 'produits'])->name('vendeurs.produits');
           Route::post('/produits', [ProduitController::class, 'store'])->name('vendeurs.produits.store');
-    });
+          Route::middleware(['proprio'])->group(function () {
+            Route::get('/produits/{Produit}/edit', [ProduitController::class, 'edit'])->name('vendeurs.produits.edit');
+            Route::put('/produits/{Produit}', [ProduitController::class, 'update'])->name('vendeurs.produits.update');
+            Route::get('/produits/{Produit}/delete', [ProduitController::class, 'destroy'])->name('vendeurs.produits.destroy');
+
+          });
+
+        });
 });
 
 

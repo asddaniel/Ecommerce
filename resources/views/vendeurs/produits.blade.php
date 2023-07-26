@@ -3,8 +3,9 @@
 
 <div class="container-fluid">
     <div class="row pt-2 justify-content-center">
-        <div class="col-lg-6 bg-white shadow">
-            <form action="{{ route('vendeurs.produits.store') }}" method="post" enctype="multipart/form-data">
+        <div class="col-lg-6 px-3">
+            <form  class="bg-white shadow px-3"
+             action="{{ route('vendeurs.produits.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group pt-2 pb-3 px-2">
                     <div class="text-center h3">Ajouter un produit</div>
@@ -35,40 +36,43 @@
             </form>
 
         </div>
+        <div class="col-lg-6 px-4">
+            <div class="row p-2 bg-white shadow">
+
+                <table class="table table-bordered table-hover table-striped rounded shadow-sm">
+                <thead>
+                    <tr>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($products as $product)
+                    <tr >
+                        <td>{{ substr($product->name??"", 0, 15) }}</td>
+                        <td>{{ $product->price??"" }}</td>
+                        <td><img src="{{asset('storage/images/'.$product->image??'') }}" alt="{{ $product->name??'' }}" class="img-fluid max-w-min"></td>
+                        <td>
+                        <a href="{{ route('produits.show', $product->id) }}" class="btn btn-primary btn-sm">Voir</a>
+                        <a href="{{ route('vendeurs.produits.edit', $product->id) }}" class="btn btn-warning btn-sm">Modifier</a>
+
+
+                            <a href="{{ route('vendeurs.produits.destroy', $product->id) }}"  class="btn btn-danger btn-sm" >Supprimer</a>
+
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                </table>
+
+        </div>
+
+        </div>
     </div>
 
-    <div class="row p-2 ">
 
-<table class="table table-bordered table-hover table-striped rounded shadow-sm">
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Prix</th>
-      <th>Image</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($products as $product)
-      <tr >
-        <td>{{ $product->name??"" }}</td>
-        <td>{{ $product->price??"" }}</td>
-        <td><img src="{{asset('storage/images/'.$product->image??'') }}" alt="{{ $product->name??'' }}" class="img-fluid max-w-min"></td>
-        <td>
-          <a href="g" class="btn btn-primary btn-sm">Voir</a>
-          <a href="" class="btn btn-warning btn-sm">Modifier</a>
-          <form action="" method="POST" class="d-inline">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')">Supprimer</button>
-          </form>
-        </td>
-      </tr>
-    @endforeach
-  </tbody>
-</table>
-
-    </div>
 </div>
 
 @endsection

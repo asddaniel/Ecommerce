@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ligne_ventes', function (Blueprint $table) {
+        Schema::create('livreurs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("produit_id");
-            $table->integer("quantite");
-            $table->unsignedBigInteger('vente_id');
-            $table->float("prix")->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->float("prix_par_kilo");
+            $table->float("prix_par_valeur");
+            $table->float("prix_par_distance");
+            $table->integer("delais");
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ligne_ventes');
+        Schema::dropIfExists('livreurs');
     }
 };

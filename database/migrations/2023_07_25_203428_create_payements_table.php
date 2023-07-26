@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ligne_ventes', function (Blueprint $table) {
+        Schema::create('payements', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("produit_id");
-            $table->integer("quantite");
-            $table->unsignedBigInteger('vente_id');
-            $table->float("prix")->nullable();
+            $table->float("montant");
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ligne_ventes');
+        Schema::dropIfExists('payements');
     }
 };
