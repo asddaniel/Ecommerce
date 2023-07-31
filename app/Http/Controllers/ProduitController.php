@@ -6,6 +6,8 @@ use App\Models\Produit;
 use App\Http\Requests\StoreProduitRequest;
 use App\Http\Requests\UpdateProduitRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\ProduitResource;
+use App\Models\Categorie;
 
 class ProduitController extends Controller
 {
@@ -24,6 +26,9 @@ class ProduitController extends Controller
     {
         //
     }
+    public function api(){
+        return response()->json(Produit::all());
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -38,9 +43,10 @@ class ProduitController extends Controller
 
 
         }
+        $data['enchere'] = $request->enchere=="on"?true:false;
         $data['user_id'] = Auth::user()->id;
-        Produit::create($data);
-        return redirect()->back();
+       $produit =  Produit::create($data);
+        return  redirect()->back();
     }
 
     /**
@@ -49,7 +55,8 @@ class ProduitController extends Controller
     public function show(Produit $produit)
     {
         return view('produits.show', [
-            'produit' => $produit
+            'produit' => $produit,
+            "categories"=>Categorie::all()
         ]);
     }
 
@@ -59,7 +66,8 @@ class ProduitController extends Controller
     public function edit(Produit $produit)
     {
         return view('produits.edit', [
-            'produit' => $produit
+            'produit' => $produit,
+            "categories"=>Categorie::all()
         ]);
     }
 
@@ -73,6 +81,7 @@ class ProduitController extends Controller
             $data['image'] = str_replace('images', '', $request->image->store('images'));
 
         }
+        $data['enchere'] = $request->enchere=="on"?true:false;
         $produit->update($data);
         return redirect()->back();
     }

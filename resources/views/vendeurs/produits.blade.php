@@ -4,16 +4,33 @@
 <div class="container-fluid">
     <div class="row pt-2 justify-content-center">
         <div class="col-lg-6 px-3">
-            <form  class="bg-white shadow px-3"
+            <form  class="bg-white shadow px-3 rounded"
              action="{{ route('vendeurs.produits.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group pt-2 pb-3 px-2">
                     <div class="text-center h3">Ajouter un produit</div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group ">
                     <label for="name">Nom du produit</label>
                     <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group d-flex justify-content-start p-2 border rounded">
+                    <label for="enchere">vente aux enchere ?</label>
+                    <input type="checkbox" class="form-control" name="enchere">
+                </div>
+                <div class="form-group">
+                    <label for="categorie">Categorie</label>
+                    <select name="categorie_id" id="categorie" class="form-control">
+                        <option >Choisir une categorie</option>
+                        @foreach ($categories as $categorie)
+
+                            <option value="{{ $categorie->id }}">  {{ $categorie->name }}</option>
+
+                        @endforeach
+
+
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -44,7 +61,9 @@
                     <tr>
                     <th>Nom</th>
                     <th>Prix</th>
+                    <th>categorie</th>
                     <th>Image</th>
+                    <th>Enchere</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
@@ -53,7 +72,9 @@
                     <tr >
                         <td>{{ substr($product->name??"", 0, 15) }}</td>
                         <td>{{ $product->price??"" }}</td>
+                        <td>{{ $product->categorie->name??"aucune" }}</td>
                         <td><img src="{{asset('storage/images/'.$product->image??'') }}" alt="{{ $product->name??'' }}" class="img-fluid max-w-min"></td>
+                        <td>{{ $product->enchere?"oui":"non" }}</td>
                         <td>
                         <a href="{{ route('produits.show', $product->id) }}" class="btn btn-primary btn-sm">Voir</a>
                         <a href="{{ route('vendeurs.produits.edit', $product->id) }}" class="btn btn-warning btn-sm">Modifier</a>

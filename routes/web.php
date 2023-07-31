@@ -6,6 +6,8 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\LigneVenteController;
 use App\Http\Controllers\VendeurController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\CategorieController;
+use App\Mdels\Produit;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +21,11 @@ use App\Http\Controllers\ProduitController;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('home');
-Route::get('/cart', [MainController::class, 'cart'])->name('cart');
+Route::get('/cart', [MainController::class, 'index'])->name('cart');
 Route::get("/produits/{Produit}", [ProduitController::class, 'show'])->name('produits.show');
+Route::get("/api/produits", [ProduitController::class, 'api'])->name('produits.api');
+
+Route::get("/livreurs", [MainController::class, "index"])->name("livreurs");
 
 
 Route::get('/dashboard', function () {
@@ -28,9 +33,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get("/productlist", [MainController::class, "index"])->name("livreurs");
+    Route::post("/produits", [ProduitController::class, "store"])->name("produit.store");
+    Route::resource('categorie', CategorieController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/categories/all', [CategorieController::class, 'index'])->name('categories.all');
     Route::prefix('vendeurs')->group(function () {
           Route::get('', [VendeurController::class, 'dashboard'])->name('vendeurs');
           Route::get('/produits', [VendeurController::class, 'produits'])->name('vendeurs.produits');

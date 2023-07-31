@@ -17,7 +17,7 @@ return new class extends Migration
             $table->float('price');
             $table->string('image')->nullable();
             $table->string('description')->nullable();
-            $table->boolean('enchere')->default(1);
+            $table->boolean('enchere')->default(0);
             $table->unsignedBigInteger("user_id");
             $table->integer("quantity")->default(0);
             $table->timestamps();

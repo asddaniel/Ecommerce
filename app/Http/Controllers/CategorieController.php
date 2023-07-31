@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Http\Requests\StoreCategorieRequest;
 use App\Http\Requests\UpdateCategorieRequest;
+use App\Http\Resources\CategorieResource;
 
 class CategorieController extends Controller
 {
@@ -13,7 +14,7 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        return CategorieResource::collection(Categorie::all());
     }
 
     /**
@@ -21,7 +22,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create', ["categories"=>Categorie::all()]);
     }
 
     /**
@@ -29,7 +30,10 @@ class CategorieController extends Controller
      */
     public function store(StoreCategorieRequest $request)
     {
-        //
+        
+        $categorie = Categorie::create($request->validated());
+        return redirect()->back();
+
     }
 
     /**
@@ -37,7 +41,7 @@ class CategorieController extends Controller
      */
     public function show(Categorie $categorie)
     {
-        //
+        return new CategorieResource($categorie);
     }
 
     /**
@@ -45,7 +49,7 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $categorie)
     {
-        //
+        return view("categories.edit", compact("categorie"));
     }
 
     /**
@@ -53,7 +57,8 @@ class CategorieController extends Controller
      */
     public function update(UpdateCategorieRequest $request, Categorie $categorie)
     {
-        //
+        $categorie->update($request->validated());
+        return redirect()->back();
     }
 
     /**
@@ -61,6 +66,7 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
-        //
+        $categorie->delete();
+        return response(['message' => 'Categorie supprimée'], 202);
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('livraisons', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('livreur_id');
             $table->float("prix");
             $table->unsignedBigInteger('vente_id');
             $table->integer("delais");

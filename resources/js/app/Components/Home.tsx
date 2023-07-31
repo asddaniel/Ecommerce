@@ -1,18 +1,22 @@
 import { Component, ReactNode } from "react";
 import React from "react";
-import Navbar from "./layouts/Navbar";
 import Shopping from "./Shopping";
 import Sidebar from "./layouts/Sidebar";
-import Card from "./Card";
+import CardProduct from "./CardProduct";
+
 
 
 export default class Home extends Component{
 
     render():ReactNode
     {
-        return (<div className="grid grid-cols-2">
+        return (<div className="grid grid-cols-3">
+            <div className="col-span-2">
+            <Shopping></Shopping>
 
-   <Shopping></Shopping>
+            </div>
+
+
    <div><Sidebar></Sidebar></div>
         </div>)
     }

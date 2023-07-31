@@ -9,7 +9,7 @@
                             <a href="tel:+123-456-7890" class="nav-link text-white"><i class="fa fa-phone-square mr-2 "></i>+123-456-7890</a>
                         </li>
                         <li class="px-2">
-                            <a href="mailto:mail@ecom.com" class="nav-link text-white"><i class="fa fa-envelope mr-2"></i>mail@ecom.com</a>
+                            <a href="{{ route('home') }}" class="nav-link text-white"><i class="fa fa-house mr-2"></i>Accueil</a>
                         </li>
                     </ul>
                 </div>
@@ -80,9 +80,9 @@
                             @endauth
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="oppo">Categories</a>
+                                <a class="nav-link" href="{{ route('categorie.create') }}" id="oppo">Categories</a>
                             </li>
-                           
+
                         </ul>
                     </div>
                 </nav>

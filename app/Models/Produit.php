@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Produit extends Model
 {
@@ -16,6 +17,7 @@ class Produit extends Model
         "description",
         "categorie_id",
         "user_id",
+        "enchere"
     ];
 
     /**
@@ -35,6 +37,6 @@ class Produit extends Model
      */
     public function categorie(): HasOne
     {
-        return $this->hasOne(Categorie::class);
+        return $this->hasOne(Categorie::class, 'id', 'categorie_id');
     }
 }

@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import  ReactDOM  from 'react-dom/client'
-import Home from './Components/Home';
+import Home from './pages/Home';
 import Navbar from './Components/layouts/Navbar';
 import Footer from './Components/layouts/Footer';
+import Cart from './pages/Cart';
+import LivreurPage from './pages/LivreurPage';
+import ProductList from './pages/ProductList';
 
 
 
@@ -19,7 +22,22 @@ const router = createBrowserRouter([
     {
       path: "/",
       element: <Home  />,
+
     },
+    {
+      path: "/cart",
+      element: <Cart  />,
+
+    },
+    {
+        path: "/livreurs",
+        element:<LivreurPage/>
+    },
+    {
+        path: "/productlist",
+        element:<ProductList/>
+    }
+
 
   ]);
 //   const locationpath = useLocation()

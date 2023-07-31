@@ -14,8 +14,16 @@
 
     </head>
     <body class="antialiased">
+    <form action="" name="form_uri">
+        @csrf
 
+    </form>
 
+       <input type="hidden" name="csrf_token" id="csrf-token" value="{{ csrf_token() }}">
+       <input type="hidden" name="produi_url" id="url" value="{{ route('produit.store') }}">
+       <input type="hidden" name="categorie_url" id="categorie_url" value="{{ route('categorie.store') }}">
+       <input type="hidden" name="categorie_all_url" id="categorie_all_url" value="{{ route('categories.all') }}">
+       <input type="hidden" name="api" id="api" value="{{ route('produits.api') }}">
 
         <div class="root" id="root">
             @viteReactRefresh
