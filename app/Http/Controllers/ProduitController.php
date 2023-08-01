@@ -78,7 +78,7 @@ class ProduitController extends Controller
     {
         $data = $request->validated();
         if($request->hasFile('image')){
-            $data['image'] = str_replace('images', '', $request->image->store('images'));
+            $data['image'] = str_replace('images/', '', $request->image->store('images'));
 
         }
         $data['enchere'] = $request->enchere=="on"?true:false;
