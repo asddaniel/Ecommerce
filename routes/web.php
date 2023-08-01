@@ -7,7 +7,8 @@ use App\Http\Controllers\LigneVenteController;
 use App\Http\Controllers\VendeurController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CategorieController;
-use App\Mdels\Produit;
+use App\Models\Produit;
+use App\Http\Resources\ProduitResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,13 @@ use App\Mdels\Produit;
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('/cart', [MainController::class, 'index'])->name('cart');
 Route::get("/produits/{Produit}", [ProduitController::class, 'show'])->name('produits.show');
+Route::get("/produit/{Produit}", [MainController::class, 'showproduct'])->name('produits.view');
 Route::get("/api/produits", [ProduitController::class, 'api'])->name('produits.api');
+Route::get("/api/produits/{Produit}", function(Produit $produit){
+    return new ProduitResource($produit);
+})->name('produits.apires');
+
+Route::get("/produits/{Produit}/discussion", [MainController::class, 'index'])->name('produits.discussion');
 
 Route::get("/livreurs", [MainController::class, "index"])->name("livreurs");
 

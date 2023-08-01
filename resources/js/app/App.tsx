@@ -6,6 +6,8 @@ import Footer from './Components/layouts/Footer';
 import Cart from './pages/Cart';
 import LivreurPage from './pages/LivreurPage';
 import ProductList from './pages/ProductList';
+import ProductPage from './pages/ProductPage';
+import Discussion from './pages/Discussion';
 
 
 
@@ -36,7 +38,16 @@ const router = createBrowserRouter([
     {
         path: "/productlist",
         element:<ProductList/>
+    },
+    {
+        path: "/produit/:id",
+        element:<ProductPage />
+    },
+    {
+        path: "/produits/:id/discussion",
+        element:<Discussion />
     }
+
 
 
   ]);

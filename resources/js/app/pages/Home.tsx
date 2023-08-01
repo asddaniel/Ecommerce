@@ -12,12 +12,12 @@ export default class Home extends Component{
 
         this.state = {
             products: [
-             
+
             ]
         }
     }
     componentDidMount(): void {
-        console.log(document.getElementById("api").value)
+        
         fetch(document.getElementById("api")?.value).then(res => res.json()).then(data => {
             this.setState({
                 products: data

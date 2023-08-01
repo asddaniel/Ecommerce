@@ -27,7 +27,22 @@ class ProduitController extends Controller
         //
     }
     public function api(){
-        return response()->json(Produit::all());
+        $produits = Produit::all();
+        $produitsAvecLiensImages = collect();
+        foreach($produits as $produit){
+            $produitAvecLienImage = [
+                'id' => $produit->id,
+                'name' => $produit->name,
+                'description' => $produit->description,
+                'image' => $produit->image,
+                'link_image' => asset('storage/images/' . $produit->image),
+                'price' => $produit->price,
+                'enchere' => $produit->enchere,
+                'categorie' => ($produit->categorie->name??'uncategorized'),
+            ];
+            $produitsAvecLiensImages->push($produitAvecLienImage);
+        }
+        return response()->json($produitsAvecLiensImages);
     }
 
     /**
