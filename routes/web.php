@@ -9,6 +9,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CategorieController;
 use App\Models\Produit;
 use App\Http\Resources\ProduitResource;
+use App\Http\Controllers\CommentaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::get("/produits/{Produit}", [ProduitController::class, 'show'])->name('pro
 Route::get("/produit/{Produit}", [MainController::class, 'showproduct'])->name('produits.view');
 Route::get("/api/produits", [ProduitController::class, 'api'])->name('produits.api');
 Route::get("/api/produits/{Produit}", function(Produit $produit){
-    return new ProduitResource($produit);
+     return response()->json($produit);
 })->name('produits.apires');
 
 Route::get("/produits/{Produit}/discussion", [MainController::class, 'index'])->name('produits.discussion');
@@ -47,6 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/categories/all', [CategorieController::class, 'index'])->name('categories.all');
+    Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store')->withoutMiddleware(['csrf']);
     Route::prefix('vendeurs')->group(function () {
           Route::get('', [VendeurController::class, 'dashboard'])->name('vendeurs');
           Route::get('/produits', [VendeurController::class, 'produits'])->name('vendeurs.produits');

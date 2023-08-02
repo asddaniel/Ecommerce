@@ -39,4 +39,14 @@ class Produit extends Model
     {
         return $this->hasOne(Categorie::class, 'id', 'categorie_id');
     }
+
+    /**
+     * Get all of the commentaire for the Produit
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function commentaires(): HasMany
+    {
+        return $this->hasMany(Commentaire::class, 'produit_id', 'id');
+    }
 }

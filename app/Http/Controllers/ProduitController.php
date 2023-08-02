@@ -39,6 +39,7 @@ class ProduitController extends Controller
                 'price' => $produit->price,
                 'enchere' => $produit->enchere,
                 'categorie' => ($produit->categorie->name??'uncategorized'),
+                'commentaires' => [],
             ];
             $produitsAvecLiensImages->push($produitAvecLienImage);
         }

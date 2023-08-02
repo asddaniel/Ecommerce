@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use App\Models\Produit;
 use App\Models\Ligne_vente;
 use App\Models\Vente;
+use App\Models\Commentaire;
 use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,14 +27,21 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(200);
 
+        Route::bind('produit', function($value){
+            return Produit::with('commentaires')->findOrFail($value);
+        });
         Route::bind('Produit', function($value){
-            return Produit::findOrFail($value);
+            return Produit::with('commentaires.user')->findOrFail($value);
         });
         Route::bind('Vente', function($value){
             return Vente::findOrFail($value);
         });
         Route::bind('Ligne_vente', function($value){
             return Ligne_vente::findOrFail($value);
+        });
+
+        Route::bind('Commentaire', function($value){
+            return Commentaire::findOrFail($value);
         });
     }
 }
