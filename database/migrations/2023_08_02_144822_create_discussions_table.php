@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
+            $table->text('message');
+            $table->unsignedBigInteger('produit_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('correspondant_id');
             $table->timestamps();
         });
     }
