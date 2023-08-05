@@ -11,7 +11,7 @@ class UpdateLigne_venteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateLigne_venteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "produit_id" => ["integer"],
+            "vente_id" => ["integer"],
+            "quantite" => ["required", "integer"],
         ];
     }
 }

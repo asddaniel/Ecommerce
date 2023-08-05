@@ -35,6 +35,11 @@
 
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="quantite">Quantite de stock</label>
+                    <input type="text" class="form-control" id="quantite" value="{{ $produit->quantite }}" name="quantite">
+                </div>
                 <div class="form-group d-flex justify-content-start p-2 border rounded">
                     <label for="enchere">vente aux enchere ?</label>
                     <input type="checkbox" class="form-control" name="enchere" {{ $produit->enchere?"checked":''}}>

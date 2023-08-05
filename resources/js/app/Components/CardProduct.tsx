@@ -10,7 +10,7 @@ export default function CardProduct(props) {
 					<div className="flex justify-between w-full pb-2 space-x-2">
 						<div className="space-y-1">
 							<h3 className="text-lg font-semibold leadi sm:pr-8">{props.quantity} {props.name}</h3>
-							<p className="text-sm dark:text-gray-400">{props.categorie.name}</p>
+							<p className="text-sm dark:text-gray-400">{props?.categorie?.name}</p>
 						</div>
 						<div className="text-right">
 							<p className="text-lg font-semibold">{ props.price*props.quantity}</p>

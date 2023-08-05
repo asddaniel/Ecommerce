@@ -10,6 +10,8 @@ use App\Http\Controllers\CategorieController;
 use App\Models\Produit;
 use App\Http\Resources\ProduitResource;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\VenteController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,7 @@ use App\Http\Controllers\CommentaireController;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('home');
+Route::get('/payement', [MainController::class, 'index'])->name('paiement');
 Route::get('/cart', [MainController::class, 'index'])->name('cart');
 Route::get("/produits/{Produit}", [ProduitController::class, 'show'])->name('produits.show');
 Route::get("/produit/{Produit}", [MainController::class, 'showproduct'])->name('produits.view');
@@ -43,6 +46,10 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get("/productlist", [MainController::class, "index"])->name("livreurs");
     Route::post("/produits", [ProduitController::class, "store"])->name("produit.store");
+    Route::get("/ventes/create", [VenteController::class, "store"])->name("ventes.store");
+    Route::post("/ventes/ligne", [LigneVenteController::class, "store"])->name("lignesventes.store");
+    Route::post("/ventes/ligne/destroy/{Ligne_vente}", [LigneVenteController::class, "destroy"])->name("lignesventes.destroy");
+    Route::post("/ventes/ligne/update/{Ligne_vente}", [LigneVenteController::class, "update"])->name("lignesventes.update");
     Route::resource('categorie', CategorieController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

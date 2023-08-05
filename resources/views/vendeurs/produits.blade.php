@@ -38,6 +38,10 @@
                     <input type="text" class="form-control" id="price" name="price">
                 </div>
                 <div class="form-group">
+                    <label for="quantity">Quantite de stock"</label>
+                    <input type="text" class="form-control" id="quantity" name="quantity">
+                </div>
+                <div class="form-group">
                     <label for="image">Image</label>
                     <input type="file" class="form-control" id="image" name="image">
                 </div>

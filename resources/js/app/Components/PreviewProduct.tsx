@@ -27,8 +27,21 @@ export default function PreviewProduct(props: Produit) {
 
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
     const existingItem = cartItems.find((item: Produit) => item.id === props.id);
-
-    const addToCart = () => {
+     const persistVente = async function( resolve:any)  {
+         const response = await fetch(location.pathname.split("/")[0]+"/ventes/create")
+         .then(res => res.json())
+         .then(data => {
+             localStorage.setItem('vente_id', data.id)
+             const ligne  = resolve()
+             return {data:data, ligne: ligne}
+         })
+         .catch(err => {
+             console.log(err)
+             return null
+         })
+         return response
+     }
+    const addToCart = async () => {
         if (existingItem) {
             Swal.fire({
                 title: 'Modifier la quantité',
@@ -44,6 +57,21 @@ export default function PreviewProduct(props: Produit) {
                     if (Number(value) < 1) {
                         return 'Veuillez entrer une quantité valide';
                     }
+                    const formulaire = new FormData();
+                    formulaire.append("produit_id", props.id);
+                    formulaire.append("vente_id", localStorage.getItem('vente_id'));
+                    formulaire.append("quantite", value);
+                    formulaire.append("_token",document.form_uri?._token.value);
+                    fetch(location.pathname.split("/")[0]+"/ventes/ligne/update/" + existingItem.ligne_id, {
+                        method: 'POST',
+                        body: formulaire,
+                    }).then(res => res.text()).then(data => {
+                        console.log(data)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+
                     existingItem.quantity = Number(value);
                     localStorage.setItem('cartItems', JSON.stringify(cartItems));
                     Swal.fire({
@@ -69,15 +97,92 @@ export default function PreviewProduct(props: Produit) {
                     if (Number(value) < 1) {
                         return 'Veuillez entrer une quantité valide';
                     }
-                    const newCartItem = { ...props, quantity: Number(value) };
-                    cartItems.push(newCartItem);
-                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-                    Swal.fire({
-                        title: 'Produit ajouté au panier',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+
+                    if(!localStorage.getItem('vente_id')){
+                        const execresolve = async() => {
+                            const formd = new FormData();
+                    formd.append("produit_id", props.id);
+                    formd.append("quantite", value);
+                    formd.append("vente_id", localStorage.getItem('vente_id'));
+                    formd.append("_token",document.form_uri?._token.value)
+                    fetch(location.pathname.split("/")[0]+"/ventes/ligne", {
+                        method: 'POST',
+
+                        body: formd
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'vous n etes pas connecté'
+                        })
+                        return
+                    })
+                        }
+                        const addVente =  persistVente(execresolve)
+                        if(!addVente){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Une erreur est survenue'
+                            })
+                            return
+                        }
+           console.log(addVente)
+                        const newCartItem = { ...props, quantity: Number(value), ligne_id: addVente.ligne.id };
+                        cartItems.push(newCartItem);
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                        Swal.fire({
+                            title: 'Produit ajouté au panier',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }else{
+                        const formd = new FormData();
+                    formd.append("produit_id", props.id);
+                    formd.append("quantite", value);
+                    formd.append("vente_id", localStorage.getItem('vente_id'));
+                    formd.append("_token",document.form_uri?._token.value)
+                    fetch(location.pathname.split("/")[0]+"/ventes/ligne", {
+                        method: 'POST',
+
+                        body: formd
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        const newCartItem = { ...props, quantity: Number(value), ligne_id: data.id };
+                        cartItems.push(newCartItem);
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                        Swal.fire({
+                            title: 'Produit ajouté au panier',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'vous n etes pas connecté'
+                        })
+                        return
+                    })
+
+
+
+                    }
+
+
+
                 }
             });
         }

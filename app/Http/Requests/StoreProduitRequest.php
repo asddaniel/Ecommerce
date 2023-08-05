@@ -26,6 +26,7 @@ class StoreProduitRequest extends FormRequest
             "price"=>["required", "numeric", "min:0"],
             "image"=>["image", "mimes:jpg,png,jpeg"],
             "description"=>["required", "string"],
+            "quantity"=>["integer"],
             'categorie_id'=>["integer"],
             "user_id"=>["integer"]
         ];

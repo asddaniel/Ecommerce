@@ -29,7 +29,8 @@ class LigneVenteController extends Controller
      */
     public function store(StoreLigne_venteRequest $request)
     {
-        Ligne_vente::create($request->validated());
+        $ligne = Ligne_vente::create($request->validated());
+        return response()->json($ligne);
     }
 
     /**
@@ -53,7 +54,8 @@ class LigneVenteController extends Controller
      */
     public function update(UpdateLigne_venteRequest $request, Ligne_vente $ligne_vente)
     {
-        //
+        $ligne_vente->update($request->validated());
+        return response()->json($ligne_vente);
     }
 
     /**
@@ -61,6 +63,9 @@ class LigneVenteController extends Controller
      */
     public function destroy(Ligne_vente $ligne_vente)
     {
-        //
+        $ligne_vente->delete();
+        return response()->json([
+            'message' => 'Ligne de vente supprimée',
+        ]);
     }
 }

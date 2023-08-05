@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Vente;
 use App\Http\Requests\StoreVenteRequest;
 use App\Http\Requests\UpdateVenteRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VenteController extends Controller
 {
@@ -27,9 +29,18 @@ class VenteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreVenteRequest $request)
+    public function store(Request $request)
     {
-        //
+        if(Auth::user()!=null){
+            $vente = new Vente();
+            $vente->user_id = Auth::user()->id;
+            $vente->save();
+            return response()->json($vente);
+        }else{
+            return response()->json([
+                'message' => 'Unauthorized',
+            ], 401);
+        }
     }
 
     /**

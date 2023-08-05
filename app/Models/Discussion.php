@@ -13,5 +13,6 @@ class Discussion extends Model
         'produit_id',
         'message',
         'correspondant_id',
+        'ligne_vente_id',
     ];
 }

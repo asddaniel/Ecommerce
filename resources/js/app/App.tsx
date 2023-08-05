@@ -8,6 +8,7 @@ import LivreurPage from './pages/LivreurPage';
 import ProductList from './pages/ProductList';
 import ProductPage from './pages/ProductPage';
 import Discussion from './pages/Discussion';
+import Payement from './pages/Payement';
 
 
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
     {
         path: "/produits/:id/discussion",
         element:<Discussion />
+    },
+    {
+        path: "/payement",
+        element:<Payement />
     }
 
 

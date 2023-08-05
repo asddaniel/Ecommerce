@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from "react";
 import CardProduct from "./CardProduct";
 import Swal from "sweetalert2";
+import { Location } from "react-router-dom";
 
 type Product = {
   name: string;
@@ -10,6 +11,7 @@ type Product = {
   link_image?: string;
   description?: string;
   quantity?: number;
+  ligne_id?: number;
   categorie: {
     id: number;
     name: string;
@@ -25,27 +27,7 @@ export default class Shopping extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      products: [
-        {
-          name: "Polaroid Camera",
-          id: 0,
-          price: 59.99,
-          quantity: 1,
-          categorie: {
-            id: 1,
-            name: "Camera",
-          },
-        },
-        {
-          name: "Atelier bizantine",
-          id: 2,
-          price: 59.99,
-          categorie: {
-            id: 1,
-            name: "Appareil Photo",
-          },
-        },
-      ],
+      products: [ ],
       currentPage: 1,
     };
   }
@@ -53,25 +35,41 @@ export default class Shopping extends Component<{}, State> {
       this.setState({
           products: JSON.parse(localStorage.cartItems || '[]')
       })
+      console.log(JSON.parse(localStorage.cartItems || '[]'))
   }
 
   handleDelete = (product: Product) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: `Do you want to remove ${product.name} from your cart?`,
+      title: "etes vous sur de vouloir supprimer ?",
+      text: `vous etes sur le point de supprimer ${product.name} du panier ?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, remove it!",
+      confirmButtonText: "oui supprimer !",
     }).then((result) => {
       if (result.isConfirmed) {
         const updatedProducts = this.state.products.filter(
           (p) => p.id !== product.id
         );
+        const dataForm = new FormData()
+        dataForm.append("ligne_id", product.ligne_id.toString());
+        dataForm.append("_token",document.form_uri?._token.value);
+        fetch(location.pathname.split("/")[0]+"/ventes/ligne/destroy/"+product.ligne_id, {
+          method: "POST",
+          body: dataForm,
+        })
+        .then(e=>e.json())
+        .then(data=>{
+            console.log(data)
+            localStorage.setItem("cartItems", JSON.stringify(updatedProducts));
+        Swal.fire("supprimee !", `${product.name} a ete supprimee.`, "success");
+        })
+        .catch(err=>{
+            Swal.fire("error", err, "error");
+        })
         this.setState({ products: updatedProducts });
-        localStorage.setItem("cartItems", JSON.stringify(updatedProducts));
-        Swal.fire("Deleted!", `${product.name} has been removed.`, "success");
+
       }
     });
   };
@@ -187,16 +185,16 @@ export default class Shopping extends Component<{}, State> {
               type="button"
               className="px-6 py-2 border rounded-md dark:border-violet-400"
             >
-              Back
-              <span className="sr-only sm:not-sr-only">to shop</span>
+              retour
+              <span className="sr-only sm:not-sr-only"> au produits</span>
             </button>
-            <button
+            <a href="/payement"
               type="button"
               className="px-6 py-2 border rounded-md dark:bg-violet-400 dark:text-gray-900 dark:border-violet-400"
             >
-              <span className="sr-only sm:not-sr-only">Continue to</span>
-              Checkout
-            </button>
+              <span className="sr-only sm:not-sr-only">Continuer </span>
+              payement
+            </a>
           </div>
         </div>
       </div>

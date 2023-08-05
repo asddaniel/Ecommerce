@@ -15,6 +15,7 @@ class Produit extends Model
         "price",
         "image",
         "description",
+        "quantity",
         "categorie_id",
         "user_id",
         "enchere"
@@ -49,4 +50,14 @@ class Produit extends Model
     {
         return $this->hasMany(Commentaire::class, 'produit_id', 'id');
     }
+    /**
+     * Get the user associated with the Produit
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user(): HasOne
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+   
 }

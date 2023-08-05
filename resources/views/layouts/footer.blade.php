@@ -12,8 +12,7 @@
                         </div>
                         <div class="col-12">
                             <address>
-                                221B Baker Street<br>
-                                London, England
+
                             </address>
                         </div>
                         <div class="col-12">
@@ -28,17 +27,19 @@
                 <div class="col-lg-3 col-sm-8 text-center text-sm-left mb-sm-0 mb-3">
                     <div class="row">
                         <div class="col-12 text-uppercase">
-                            <h4>Who are we?</h4>
+
                         </div>
                         <div class="col-12 text-justify">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet vel ligula vel sodales. Aenean vel ullamcorper purus, ac pharetra arcu. Nam enim velit, ultricies eu orci nec, aliquam efficitur sem. Quisque in sapien a sem vestibulum volutpat at eu nibh. Suspendisse eget est metus. Maecenas mollis quis nisl ac malesuada. Donec gravida tortor massa, vitae semper leo sagittis a. Donec augue turpis, rutrum vitae augue ut, venenatis auctor nulla. Sed posuere at erat in consequat. Nunc congue justo ut ante sodales, bibendum blandit augue finibus.</p>
+                            <p>
+
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-2 col-sm-3 col-5 ml-lg-auto ml-sm-0 ml-auto mb-sm-0 mb-3">
                     <div class="row">
                         <div class="col-12 text-uppercase">
-                            <h4>Quick Links</h4>
+                            <h4>Liens rapide</h4>
                         </div>
                         <div class="col-12">
                             <ul class="footer-nav">
@@ -64,7 +65,7 @@
                 <div class="col-lg-1 col-sm-2 col-4 mr-auto mb-sm-0 mb-3">
                     <div class="row">
                         <div class="col-12 text-uppercase text-underline">
-                            <h4>Help</h4>
+                            <h4>Aide</h4>
                         </div>
                         <div class="col-12">
                             <ul class="footer-nav">
@@ -72,16 +73,16 @@
                                     <a href="#">FAQs</a>
                                 </li>
                                 <li>
-                                    <a href="#">Shipping</a>
+                                    <a href="#">Vente</a>
                                 </li>
                                 <li>
-                                    <a href="#">Returns</a>
+                                    <a href="#">Achats</a>
                                 </li>
                                 <li>
-                                    <a href="#">Track Order</a>
+
                                 </li>
                                 <li>
-                                    <a href="#">Report Fraud</a>
+                                   
                                 </li>
                             </ul>
                         </div>

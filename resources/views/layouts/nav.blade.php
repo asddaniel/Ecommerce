@@ -6,7 +6,7 @@
                 <div class="col-auto mr-auto">
                     <ul class="top-nav text-white d-flex align-items-center">
                         <li class="px-2">
-                            <a href="tel:+123-456-7890" class="nav-link text-white"><i class="fa fa-phone-square mr-2 "></i>+123-456-7890</a>
+                            <a href="tel:+123-456-7890" class="nav-link text-white"><i class="fa fa-phone-square mr-2 "></i></a>
                         </li>
                         <li class="px-2">
                             <a href="{{ route('home') }}" class="nav-link text-white"><i class="fa fa-house mr-2"></i>Accueil</a>
@@ -74,7 +74,7 @@
                             </li>
                             @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="samsung">Mes Produits</a>
+                                <a class="nav-link" href="{{ route('vendeurs.produits') }}" id="samsung">Mes Produits</a>
                             </li>
 
                             @endauth
