@@ -17,7 +17,7 @@ export default class Home extends Component{
         }
     }
     componentDidMount(): void {
-        
+
         fetch(document.getElementById("api")?.value).then(res => res.json()).then(data => {
             this.setState({
                 products: data
@@ -36,7 +36,7 @@ export default class Home extends Component{
     {
         return (<div className="grid grid-cols-5 px-2 pt-3 pb-3">
             <div className="col-span-5 justify-center">
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
                 {this.state?.products?.map((product) => (
                     <PreviewProduct key={product.id} {...product} />
                 ))}

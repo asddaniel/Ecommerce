@@ -6,14 +6,14 @@ import LivreurProfile from "../Components/LivreurProfile";
 export default function LivreurPage(){
     const [livreurs, setLivreur] = useState([
         {
-            name: "Ahmed",
+            name: "Patrick",
             id:0,
             price: 89.99,
             prix_par_valeur:0.23
 
         },
         {
-            name: "Achile",
+            name: "Maria",
             id: 1,
             price: 289.99,
             prix_par_valeur:0.33

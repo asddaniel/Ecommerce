@@ -1,15 +1,40 @@
 import React from "react";
+import Swal from "sweetalert2";
+import user from "../../images/user.png";
 
 export default function LivreurProfile (props){
+
+        const hire = ()=>{
+            Swal.fire({
+                title: 'voulez-vous embaucher  '+props.name+' ? ',
+                text: "cela vous coutera "+props.price,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#13a706',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'oui embaucher'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire(
+                    'ajouter!',
+                    'livraison ajouter .',
+                    'success'
+                  )
+                }
+              })
+
+        }
+
        return <div className="flex flex-col justify-center max-w-xs p-6 shadow-md rounded-xl sm:px-12 dark:bg-gray-900 dark:text-gray-100">
-	<img src="https://source.unsplash.com/150x150/?portrait?3" alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
+	<img src={user} alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
 	<div className="space-y-4 text-center divide-y divide-gray-700">
 		<div className="my-2 space-y-1">
 			<h2 className="text-xl font-semibold sm:text-2xl">{props.name}</h2>
 			<p className=" text-xs sm:text-base dark:text-gray-400 text-start">Prix : {props.price}$/Kg</p>
             <p className=" text-xs sm:text-base dark:text-gray-400 text-start">Prix : {props.price}$/Km</p>
             <p className=" text-xs sm:text-base dark:text-gray-400 text-start">Prix : {props.prix_par_valeur}$ pour 1$</p>
-		</div>
+            <button className="p-2 bg-gray-200 text-gray-800 rounded " onClick={hire}> Embaucher</button>
+        </div>
 		<div className="flex justify-center pt-2 space-x-4 align-center">
 			<a rel="noopener noreferrer" href="#" aria-label="GitHub" className="p-2 rounded-md dark:text-gray-100 hover:dark:text-violet-400">
 				<svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 fill-current">

@@ -45,7 +45,9 @@ export default class ProductPage extends Component<{}, Etat>{
         const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
         const id = location.pathname.split("/")[2];
     const existingItem = cartItems.find((item: any) => item.id === id);
+    console.log(cartItems)
         if (existingItem) {
+            console.log("item trouvee")
             Swal.fire({
                 title: 'Modifier la quantité',
                 input: 'number',
@@ -160,7 +162,7 @@ export default class ProductPage extends Component<{}, Etat>{
                     .then(res => res.json())
                     .then(data => {
                         console.log(data)
-                        const newCartItem = { ...cartItems, quantity: Number(value), ligne_id: data.id };
+                        const newCartItem = { ...this.state.products, link_image:location.pathname.split("/")[0]+"/storage/images/"+this.state.products.image, quantity: Number(value), ligne_id: data.id };
                         cartItems.push(newCartItem);
                         localStorage.setItem('cartItems', JSON.stringify(cartItems));
                         Swal.fire({
