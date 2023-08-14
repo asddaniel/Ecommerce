@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Livreur;
 use App\Http\Requests\StoreLivreurRequest;
 use App\Http\Requests\UpdateLivreurRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LivreurController extends Controller
 {
@@ -13,7 +14,7 @@ class LivreurController extends Controller
      */
     public function index()
     {
-        //
+        return  response()->json(Livreur::with("user")->get());
     }
 
     /**
@@ -29,7 +30,10 @@ class LivreurController extends Controller
      */
     public function store(StoreLivreurRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data["user_id"] = Auth::user()->id;
+        Livreur::create($data);
+        return redirect()->back();
     }
 
     /**
@@ -53,7 +57,8 @@ class LivreurController extends Controller
      */
     public function update(UpdateLivreurRequest $request, Livreur $livreur)
     {
-        //
+        $livreur->update($request->validated());
+        return redirect()->back();
     }
 
     /**

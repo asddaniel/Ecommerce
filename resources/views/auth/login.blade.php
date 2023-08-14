@@ -47,6 +47,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <div class="form-check">
+
+                                            <a href="{{ route('register') }}" class="form-check-label ml-2">vous n'avez pas de compte ?</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <button type="submit" class="btn btn-outline-dark">Se connecter</button>
                                     </div>
                                 </form>

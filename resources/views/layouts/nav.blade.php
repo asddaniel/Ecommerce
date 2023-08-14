@@ -70,7 +70,7 @@
                                 <a class="nav-link" href="{{ route('home') }}">Accueil<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" id="iphone">Produit</a>
+                                <a class="nav-link" href="{{ route('livreur.index') }}" id="iphone">Devenir Livreur</a>
                             </li>
                             @auth
                             <li class="nav-item">

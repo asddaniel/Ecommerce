@@ -17,8 +17,10 @@ type Props = {
 
 
 export default class ProductPage extends Component<{}, Etat>{
+    private location
     constructor(props: any){
         super(props)
+
         this.location = location
         this.state = {
             products: [],
@@ -27,6 +29,27 @@ export default class ProductPage extends Component<{}, Etat>{
         }
         this.handleCommentClick = this.handleCommentClick.bind(this); // Liaison du contexte pour la fonction de gestionnaire d'événements
     }
+    discution(){
+        Swal.fire({
+            title: 'proposez un montant',
+            input: 'number',
+            inputValue: "",
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'proposez un montant';
+                }
+                if (isNaN(Number(value))) {
+                    return 'Veuillez entrer un montant';
+                }
+                if (Number(value) < 1) {
+                    return 'Veuillez entrer une valeur valide';
+                }
+
+
+
+            }
+        });
+      }
     async persistVente( resolve:any)  {
         const response = await fetch(location.pathname.split("/")[0]+"/ventes/create")
         .then(res => res.json())
@@ -66,7 +89,7 @@ export default class ProductPage extends Component<{}, Etat>{
                     formulaire.append("produit_id", id);
                     formulaire.append("vente_id", localStorage.getItem('vente_id'));
                     formulaire.append("quantite", value);
-                    formulaire.append("_token",document.form_uri?._token.value);
+                    formulaire.append("_token",document.forms['form_uri']?._token.value);
                     fetch(location.pathname.split("/")[0]+"/ventes/ligne/update/" + existingItem.ligne_id, {
                         method: 'POST',
                         body: formulaire,
@@ -109,7 +132,7 @@ export default class ProductPage extends Component<{}, Etat>{
                     formd.append("produit_id", id);
                     formd.append("quantite", value);
                     formd.append("vente_id", localStorage.getItem('vente_id'));
-                    formd.append("_token",document.form_uri?._token.value)
+                    formd.append("_token",document.forms['form_uri']?._token.value)
                     fetch(location.pathname.split("/")[0]+"/ventes/ligne", {
                         method: 'POST',
 
@@ -153,7 +176,7 @@ export default class ProductPage extends Component<{}, Etat>{
                     formd.append("produit_id", id);
                     formd.append("quantite", value);
                     formd.append("vente_id", localStorage.getItem('vente_id'));
-                    formd.append("_token",document.form_uri?._token.value)
+                    formd.append("_token",document.forms['form_uri']?._token.value)
                     fetch(location.pathname.split("/")[0]+"/ventes/ligne", {
                         method: 'POST',
 
@@ -241,7 +264,7 @@ export default class ProductPage extends Component<{}, Etat>{
                 const formulaire = new FormData();
                 formulaire.append("commentaire", comment);
 
-                formulaire.append("_token", document.form_uri._token.value.trim());
+                formulaire.append("_token", document.forms['form_uri']._token.value.trim());
                 formulaire.append("produit_id", this.state.products.id);
                 formulaire.append("commentaire", comment);
                     console.log(formulaire.get("commentaire"));
@@ -280,7 +303,7 @@ export default class ProductPage extends Component<{}, Etat>{
                                 {/* Ajout d'un gestionnaire d'événements pour le clic sur le bouton "commenter" */}
                                 <button className="btn rounded-full border bg-gray-200 text-gray-600 p-2" onClick={this.handleCommentClick}>commenter</button>
                                 <button className="rounded-full bg-gray-200 text-gray-800 p-2" onClick={this.addToCart.bind(this)}>Ajouter au panier</button>
-                                <a href={"/produits/" + this.location.pathname.split("/")[2]+"/discussion"} className="rounded-full bg-gray-200 text-gray-800 p-2" >discuter</a>
+                                <div onClick={this.discution.bind(this)} className="rounded-full bg-gray-200 text-gray-800 p-2" >discuter</div>
                             </div>
                             <img src={location.pathname.split("/")[0]+"/storage/images/"+this.state.products.image} alt="" className="mx-auto max-h-96" />
                             <p className="dark:text-gray-400">{this.state.products.description}</p>

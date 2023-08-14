@@ -8,6 +8,7 @@ use App\Models\Produit;
 use App\Models\Ligne_vente;
 use App\Models\Vente;
 use App\Models\Commentaire;
+use App\Models\Livreur;
 use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
@@ -42,6 +43,9 @@ class AppServiceProvider extends ServiceProvider
 
         Route::bind('Commentaire', function($value){
             return Commentaire::findOrFail($value);
+        });
+        Route::bind('Livreur', function($value){
+            return Livreur::findOrFail($value);
         });
     }
 }

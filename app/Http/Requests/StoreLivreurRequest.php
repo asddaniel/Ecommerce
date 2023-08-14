@@ -11,7 +11,7 @@ class StoreLivreurRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreLivreurRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'prix_par_kilo'=>['required', 'numeric'],
+            'prix_par_valeur'=>['required', 'numeric'],
+            'prix_par_distance'=>['required', 'numeric'],
+            'delais'=>['required', 'integer']
         ];
     }
 }

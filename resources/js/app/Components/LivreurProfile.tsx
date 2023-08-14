@@ -29,9 +29,9 @@ export default function LivreurProfile (props){
 	<img src={user} alt="" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square" />
 	<div className="space-y-4 text-center divide-y divide-gray-700">
 		<div className="my-2 space-y-1">
-			<h2 className="text-xl font-semibold sm:text-2xl">{props.name}</h2>
-			<p className=" text-xs sm:text-base dark:text-gray-400 text-start">Prix : {props.price}$/Kg</p>
-            <p className=" text-xs sm:text-base dark:text-gray-400 text-start">Prix : {props.price}$/Km</p>
+			<h2 className="text-xl font-semibold sm:text-2xl">{props.user}</h2>
+			<p className=" text-xs sm:text-base dark:text-gray-400 text-start">Prix : {props.prix_par_kilo}$/Kg</p>
+            <p className=" text-xs sm:text-base dark:text-gray-400 text-start">Prix : {props.prix_par_distance}$/Km</p>
             <p className=" text-xs sm:text-base dark:text-gray-400 text-start">Prix : {props.prix_par_valeur}$ pour 1$</p>
             <button className="p-2 bg-gray-200 text-gray-800 rounded " onClick={hire}> Embaucher</button>
         </div>

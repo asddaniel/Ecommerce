@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import  ReactDOM  from 'react-dom/client'
+import  ReactDOM  from 'react-dom'
 import Home from './pages/Home';
 import Navbar from './Components/layouts/Navbar';
 import Footer from './Components/layouts/Footer';
@@ -18,8 +18,8 @@ import {
     RouterProvider,
   } from "react-router-dom"
 
-import { Routes, Route, useLocation } from 'react-router-dom';
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 const router = createBrowserRouter([
     {
@@ -65,13 +65,24 @@ const router = createBrowserRouter([
 
 
 if(document.getElementById("root")){
-    ReactDOM.createRoot(document.getElementById('root')).render(
-        <React.StrictMode>
-             <Navbar/>
-            <RouterProvider router={router} />
-            <Footer></Footer>
-          {/* <App /> */}
-        </React.StrictMode>,
-      )
+
+ReactDOM.render(
+    <React.StrictMode>
+        <Router>
+            <Navbar />
+            <Routes>
+                <Route path="/" element={<Home />} />
+               <Route path='/cart' element={<Cart  />} />
+               <Route path='/livreurs' element={<LivreurPage/>} />
+               <Route path='/productlist' element={<ProductList/>}/>
+               <Route path='/produit/:id' element={<ProductPage />}/>
+               <Route path="/produits/:id/discussion" element={<Discussion />} />
+               <Route path='/payement' element={<Payement />}/>
+            </Routes>
+     <Footer></Footer>
+        </Router>
+    </React.StrictMode>,
+  document.getElementById('root')
+  )
 
 }

@@ -1,23 +1,33 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link} from "react-router-dom";
+import user from "../../../images/user.png"
 
-const navigation = [
-  { name: 'Dashboard', href: '/vendeurs/produits', current: true },
-  { name: 'Accueil', href: '/', current: false },
-  { name: 'Produits', href: '#', current: false },
-  { name: 'Categories', href: '#', current: false },
-  { name: 'Panier', href: '/cart', current: false },
-  { name: 'Livreur', href: '/livreurs', current: false },
+// const navigation = [
 
-]
+//   { name: 'Accueil', href: '/', current: false },
+//   { name: 'Produits', href: '#', current: false },
+//   { name: 'Categories', href: '#', current: false },
+//   { name: 'Panier', href: '/cart', current: false },
+//   { name: 'Livreur', href: '/livreurs', current: false },
+
+// ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar() {
+
+     const [navigation, setNavigation] = useState([
+    { name: 'Accueil', href: '/', current: false },
+    { name: 'Produits', href: '#', current: false },
+    { name: 'Categories', href: '#', current: false },
+    { name: 'Panier', href: '/cart', current: false },
+    { name: 'Livreur', href: '/livreurs', current: false }
+  ]);
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -45,20 +55,32 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
+                  <a
+
+
+                        href="vendeurs/produits"
+                        className='text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'>
+
+
+                        Dashboard
+                      </a>
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.href}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
+                        onClick={() => {
+
+                        }}
                       >
 
 
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -78,8 +100,8 @@ export default function Navbar() {
                     <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        className="h-8 w-8 rounded-full border"
+                        src={user}
                         alt=""
                       />
                     </Menu.Button>

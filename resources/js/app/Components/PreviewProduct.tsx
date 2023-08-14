@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import soulier from "../../images/soulier.jpg";
 import Swal, { SweetAlertResult } from 'sweetalert2';
+import { Link } from "react-router-dom";
 
 type Categorie = {
     name: string;
@@ -15,8 +16,14 @@ type Produit = {
     price: number;
     categorie: Categorie;
 }
+interface Document{
+    form_uri: HTMLFormElement
+}
+interface document{
+    form_uri: HTMLFormElement
+}
 
-type Props = {
+interface Props {
     nom: string;
     categorie: Categorie;
     prix: number;
@@ -145,10 +152,10 @@ export default function PreviewProduct(props: Produit) {
                         });
                     }else{
                         const formd = new FormData();
-                    formd.append("produit_id", props.id);
+                    formd.append("produit_id", props.id.toString());
                     formd.append("quantite", value);
                     formd.append("vente_id", localStorage.getItem('vente_id'));
-                    formd.append("_token",document.form_uri?._token.value)
+                    formd.append("_token", Document.form_uri?._token.value)
                     fetch(location.pathname.split("/")[0]+"/ventes/ligne", {
                         method: 'POST',
 
@@ -209,7 +216,7 @@ export default function PreviewProduct(props: Produit) {
                     >
                         {buttonText}
                     </button>
-                    <a href={"/produit/" + props.id + "/"} className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none" >voir</a>
+                    <Link to={"/produit/" + props.id + "/"} className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-300 transform bg-white rounded hover:bg-gray-200 focus:bg-gray-400 focus:outline-none" >voir</Link>
                 </div>
             </div>
         </div>

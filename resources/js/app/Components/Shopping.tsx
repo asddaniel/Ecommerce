@@ -37,6 +37,7 @@ export default class Shopping extends Component<{}, State> {
       })
       console.log(JSON.parse(localStorage.cartItems || '[]'))
   }
+  
 
   handleDelete = (product: Product) => {
     Swal.fire({

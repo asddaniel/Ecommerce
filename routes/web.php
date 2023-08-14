@@ -11,6 +11,8 @@ use App\Models\Produit;
 use App\Http\Resources\ProduitResource;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\VenteController;
+use App\Http\Controllers\LivraisonController;
+use App\Http\Controllers\LivreurController;
 
 
 /*
@@ -44,6 +46,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get("/livreur", [LivraisonController::class, 'index'])->name("livreur.index");
+    Route::get("/livreur/home", [LivreurController::class, 'index'])->name("livreur.home");
+    Route::post("/livreur", [LivreurController::class, 'store'])->name("livreur.store");
+    Route::put("/livreur/{Livreur}", [LivreurController::class, 'update'])->name("livreur.update");
     Route::get("/productlist", [MainController::class, "index"])->name("livreurs");
     Route::post("/produits", [ProduitController::class, "store"])->name("produit.store");
     Route::get("/ventes/create", [VenteController::class, "store"])->name("ventes.store");

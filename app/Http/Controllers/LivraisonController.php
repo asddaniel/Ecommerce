@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Livraison;
+use App\Models\Livreur;
 use App\Http\Requests\StoreLivraisonRequest;
 use App\Http\Requests\UpdateLivraisonRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LivraisonController extends Controller
 {
@@ -13,7 +15,7 @@ class LivraisonController extends Controller
      */
     public function index()
     {
-        //
+       return view("livreurs.index", ["livreur"=>Livreur::where("user_id", Auth::user()->id)->first()]);
     }
 
     /**
@@ -29,7 +31,8 @@ class LivraisonController extends Controller
      */
     public function store(StoreLivraisonRequest $request)
     {
-        //
+
+
     }
 
     /**
