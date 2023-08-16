@@ -9,6 +9,7 @@ import ProductList from './pages/ProductList';
 import ProductPage from './pages/ProductPage';
 import Discussion from './pages/Discussion';
 import Payement from './pages/Payement';
+import { createRoot } from 'react-dom/client';
 
 
 
@@ -66,8 +67,7 @@ const router = createBrowserRouter([
 
 if(document.getElementById("root")){
 
-ReactDOM.render(
-    <React.StrictMode>
+    createRoot(document.getElementById("root")).render(<React.StrictMode>
         <Router>
             <Navbar />
             <Routes>
@@ -81,8 +81,7 @@ ReactDOM.render(
             </Routes>
      <Footer></Footer>
         </Router>
-    </React.StrictMode>,
-  document.getElementById('root')
-  )
+    </React.StrictMode>)
+
 
 }

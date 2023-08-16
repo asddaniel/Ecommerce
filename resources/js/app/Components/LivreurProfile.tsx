@@ -6,8 +6,8 @@ export default function LivreurProfile (props){
 
         const hire = ()=>{
             Swal.fire({
-                title: 'voulez-vous embaucher  '+props.name+' ? ',
-                text: "cela vous coutera "+props.price,
+                title: 'voulez-vous embaucher  '+props.user+' ? ',
+                text: "cela vous coutera "+props.prix_par_kilo+"$ par kilo, "+props.prix_par_valeur+"$ pour 1$ et "+props.prix_par_distance+"$ pour 1 km",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#13a706',

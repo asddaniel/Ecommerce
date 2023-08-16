@@ -35,6 +35,8 @@ Route::get("/api/produits", [ProduitController::class, 'api'])->name('produits.a
 Route::get("/api/produits/{Produit}", function(Produit $produit){
      return response()->json($produit);
 })->name('produits.apires');
+Route::get('/categories/all', [CategorieController::class, 'index'])->name('categories.all');
+Route::get("/livreur/home", [LivreurController::class, 'index'])->name("livreur.home");
 
 Route::get("/produits/{Produit}/discussion", [MainController::class, 'index'])->name('produits.discussion');
 
@@ -47,7 +49,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get("/livreur", [LivraisonController::class, 'index'])->name("livreur.index");
-    Route::get("/livreur/home", [LivreurController::class, 'index'])->name("livreur.home");
+
     Route::post("/livreur", [LivreurController::class, 'store'])->name("livreur.store");
     Route::put("/livreur/{Livreur}", [LivreurController::class, 'update'])->name("livreur.update");
     Route::get("/productlist", [MainController::class, "index"])->name("livreurs");
@@ -60,7 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/categories/all', [CategorieController::class, 'index'])->name('categories.all');
+
     Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store')->withoutMiddleware(['csrf']);
     Route::prefix('vendeurs')->group(function () {
           Route::get('', [VendeurController::class, 'dashboard'])->name('vendeurs');

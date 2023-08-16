@@ -60,6 +60,7 @@ export default class ProductPage extends Component<{}, Etat>{
         })
         .catch(err => {
             console.log(err)
+            window.location.href = location.pathname.split("/")[0]+"/login"
             return null
         })
         return response
@@ -97,6 +98,7 @@ export default class ProductPage extends Component<{}, Etat>{
                         console.log(data)
                     })
                     .catch(err => {
+                        window.location.href = location.pathname.split("/")[0]+"/login"
                         console.log(err)
                     })
 
@@ -149,6 +151,8 @@ export default class ProductPage extends Component<{}, Etat>{
                             title: 'Oops...',
                             text: 'vous n etes pas connecté'
                         })
+
+                        window.location.href = location.pathname.split("/")[0]+"/login"
                         return
                     })
                         }
@@ -202,6 +206,7 @@ export default class ProductPage extends Component<{}, Etat>{
                             title: 'Oops...',
                             text: 'vous n etes pas connecté'
                         })
+                        window.location.href = location.pathname.split("/")[0]+"/login"
                         return
                     })
 
