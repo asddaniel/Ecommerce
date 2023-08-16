@@ -60,7 +60,7 @@ export default function LivreurPage(){
                       </a>
         </div>
 
-            <div className="grid grid-cols-4 gap-2 px-2 pt-3 pb-3">
+            <div className="grid lg:grid-cols-4 gap-2 px-2 pt-3 pb-3">
                     {livreurs.map((livreur) => (
                     <LivreurProfile key={livreur.id} {...livreur}></LivreurProfile>
                         ))}

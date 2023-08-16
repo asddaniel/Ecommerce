@@ -40,10 +40,12 @@ export default function PreviewProduct(props: Produit) {
          .then(data => {
              localStorage.setItem('vente_id', data.id)
              const ligne  = resolve()
+             resolve(data)
              return {data:data, ligne: ligne}
          })
          .catch(err => {
              console.log(err)
+             window.location.href = location.pathname.split("/")[0]+"login"
              return null
          })
          return response
@@ -131,17 +133,10 @@ export default function PreviewProduct(props: Produit) {
                         return
                     })
                         }
-                        const addVente =  persistVente(execresolve)
-                        if(!addVente){
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Une erreur est survenue'
-                            })
-                            return
-                        }
-           console.log(addVente)
-                        const newCartItem = { ...props, quantity: Number(value), ligne_id: addVente.ligne.id };
+                        const addVente = persistVente(execresolve)
+                        .then((response)=>{
+                            console.log(response)
+                            const newCartItem = { ...props, quantity: Number(value), ligne_id: response.ligne.id };
                         cartItems.push(newCartItem);
                         localStorage.setItem('cartItems', JSON.stringify(cartItems));
                         Swal.fire({
@@ -150,6 +145,12 @@ export default function PreviewProduct(props: Produit) {
                             showConfirmButton: false,
                             timer: 1500
                         });
+
+                        })
+                        .catch(e=>console.log(e))
+
+           console.log(addVente)
+
                     }else{
                         const formd = new FormData();
                     formd.append("produit_id", props.id.toString());
