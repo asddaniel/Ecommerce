@@ -1,0 +1,29 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-d37ddabd.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.jsx": {
+    "assets": [
+      "assets/user-dcf40330.png",
+      "assets/soulier-4af9ec73.jpg",
+      "assets/mastercard-48-31b7aae5.png"
+    ],
+    "file": "assets/app-0f8a1e6b.js",
+    "isEntry": true,
+    "src": "resources/js/app.jsx"
+  },
+  "resources/js/images/mastercard-48.png": {
+    "file": "assets/mastercard-48-31b7aae5.png",
+    "src": "resources/js/images/mastercard-48.png"
+  },
+  "resources/js/images/soulier.jpg": {
+    "file": "assets/soulier-4af9ec73.jpg",
+    "src": "resources/js/images/soulier.jpg"
+  },
+  "resources/js/images/user.png": {
+    "file": "assets/user-dcf40330.png",
+    "src": "resources/js/images/user.png"
+  }
+}
