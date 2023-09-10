@@ -61,35 +61,35 @@
             <div class="row p-2 bg-white shadow">
 
                 <table class="table table-bordered table-hover table-striped rounded shadow-sm">
-                <thead>
-                    <tr>
-                    <th>Nom</th>
-                    <th>Prix</th>
-                    <th>categorie</th>
-                    <th>Image</th>
-                    <th>Enchere</th>
-                    <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($products as $product)
-                    <tr >
-                        <td>{{ substr($product->name??"", 0, 15) }}</td>
-                        <td>{{ $product->price??"" }}</td>
-                        <td>{{ $product->categorie->name??"aucune" }}</td>
-                        <td><img src="{{asset('storage/images/'.$product->image??'') }}" alt="{{ $product->name??'' }}" class="img-fluid max-w-min"></td>
-                        <td>{{ $product->enchere?"oui":"non" }}</td>
-                        <td>
-                        <a href="{{ route('produits.show', $product->id) }}" class="btn btn-primary btn-sm">Voir</a>
-                        <a href="{{ route('vendeurs.produits.edit', $product->id) }}" class="btn btn-warning btn-sm">Modifier</a>
+                    <thead>
+                        <tr>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>categorie</th>
+                        <th>Image</th>
+                        <th>Enchere</th>
+                        <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($products as $product)
+                        <tr >
+                            <td>{{ substr($product->name??"", 0, 15) }}</td>
+                            <td>{{ $product->price??"" }}</td>
+                            <td>{{ $product->categorie->name??"aucune" }}</td>
+                            <td><img src="{{asset('storage/images/'.$product->image??'') }}" alt="{{ $product->name??'' }}" class="img-fluid max-w-min"></td>
+                            <td>{{ $product->enchere?"oui":"non" }}</td>
+                            <td>
+                            <a href="{{ route('produits.show', $product->id) }}" class="btn btn-primary btn-sm">Voir</a>
+                            <a href="{{ route('vendeurs.produits.edit', $product->id) }}" class="btn btn-warning btn-sm">Modifier</a>
 
 
-                            <a href="{{ route('vendeurs.produits.destroy', $product->id) }}"  class="btn btn-danger btn-sm" >Supprimer</a>
+                                <a href="{{ route('vendeurs.produits.destroy', $product->id) }}"  class="btn btn-danger btn-sm" >Supprimer</a>
 
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
                 </table>
 
         </div>

@@ -50,7 +50,7 @@ export default class ProductPage extends Component<{}, Etat>{
             }
         });
       }
-    async persistVente( resolve:any)  {
+    async persistVente( resolve:any): Promise<any> {
         const response = await fetch(location.pathname.split("/")[0]+"/ventes/create")
         .then(res => res.json())
         .then(data => {

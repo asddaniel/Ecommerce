@@ -8,7 +8,7 @@ const Payement = () => {
 
     const [total, setTotal] = useState(0);
     useEffect(() => {
-        const cart: [] = JSON.parse(localStorage.getItem("cartItems")??'[]');
+        const cart: [any] = JSON.parse(localStorage.getItem("cartItems")??'[]');
 
 
         let totale: number = 0

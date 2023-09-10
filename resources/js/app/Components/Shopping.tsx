@@ -37,7 +37,7 @@ export default class Shopping extends Component<{}, State> {
       })
       console.log(JSON.parse(localStorage.cartItems || '[]'))
   }
-  
+
 
   handleDelete = (product: Product) => {
     Swal.fire({
@@ -55,7 +55,7 @@ export default class Shopping extends Component<{}, State> {
         );
         const dataForm = new FormData()
         dataForm.append("ligne_id", product.ligne_id.toString());
-        dataForm.append("_token",document.form_uri?._token.value);
+        dataForm.append("_token",document.forms['form_uri']?._token.value);
         fetch(location.pathname.split("/")[0]+"/ventes/ligne/destroy/"+product.ligne_id, {
           method: "POST",
           body: dataForm,

@@ -31,8 +31,8 @@ export default  function ProductList(){
     ]
     useEffect(() => {
         const fetchData = async () => {
-
-          const jsonData = await getAllCategorie(document.getElementById("categorie_all_url")?.value);
+          const cat_uri: HTMLInputElement = document.getElementById("categorie_all_url") as HTMLInputElement
+          const jsonData = await getAllCategorie(cat_uri?.value);
           setCategorie(jsonData);
           console.log(categorie);
         };
@@ -55,12 +55,17 @@ export default  function ProductList(){
             "</select>",
           focusConfirm: false,
           preConfirm: () => {
+            const swalname:HTMLInputElement = document.getElementById("swal-input-name") as HTMLInputElement
+            const swalprix:HTMLInputElement = document.getElementById("swal-input-prix") as HTMLInputElement
+            const swalimage:HTMLInputElement = document.getElementById("swal-input-image") as HTMLInputElement
+            const swaldescription:HTMLInputElement = document.getElementById("swal-input-description") as HTMLInputElement
+            const swalcategorie:HTMLInputElement = document.getElementById("swal-input-categorie") as HTMLInputElement
             return [
-              document.getElementById("swal-input-name").value,
-              document.getElementById("swal-input-prix").value,
-              document.getElementById("swal-input-image").value,
-              document.getElementById("swal-input-description").value,
-              document.getElementById("swal-input-categorie").value,
+              swalname.value,
+              swalprix.value,
+              swalimage.value,
+              swaldescription.value,
+              swalcategorie.value,
             ];
           },
         });
@@ -103,8 +108,10 @@ export default  function ProductList(){
           })
 
           if (name) {
-            const url = document.getElementById("categorie_url")?.value;
-            const csrf = document.form_uri?._token?.value
+            const urlinput:HTMLInputElement = document.getElementById("categorie_url") as HTMLInputElement
+            const formul :HTMLFormElement = document.forms["form_uri"] as HTMLFormElement
+            const url = urlinput?.value;
+            const csrf = formul._token?.value
             // Swal.fire(`Your IP address is ${name}  et csrf ${csrf}`)
             const form = new FormData()
             form.append("name", name)
